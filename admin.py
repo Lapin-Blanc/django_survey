@@ -53,7 +53,7 @@ class SurveyQuestionInline(admin.TabularInline):
     model = SurveyQuestion
     form = SurveyQuestionForm
     fields = ['question_text', 'record', 'score']
-    readonly_fields = ['question_text', 'record']
+#    readonly_fields = ['question_text', 'record']
     can_delete = False
     extra = 0
 
