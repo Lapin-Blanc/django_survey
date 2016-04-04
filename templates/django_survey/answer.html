@@ -1,0 +1,51 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ survey.subject }}</title>
+    </head>
+    <body>
+        <h2>Réponse à l'enquête - {{ survey.subject  }}</h2>
+        
+        {% if error_message %}
+            <p style="color:red;"><em>{{ error_message}}</em></p>
+        {% endif %}
+        
+        <form action="{% url 'django_survey:process_answer' survey.token %}" method="post" />
+            {% csrf_token %}
+        
+            <table border="1px">
+                    <tr>
+                        <th align="center">Question</th>
+                        <th align="center" width="50px"><img src="{% static "img/very_angry.png" %}" alt="very_angry" width="30px"/></th>
+                        <th align="center" width="50px"><img src="{% static "img/angry.png" %}" alt="angry" width="30px"/></th>
+                        <th align="center" width="50px"><img src="{% static "img/neutral.png" %}" alt="neutral" width="30px"/></th>
+                        <th align="center" width="50px"><img src="{% static "img/happy.png" %}" alt="happy" width="30px"/></th>
+                        <th align="center" width="50px"><img src="{% static "img/very_happy.png" %}" alt="very_happy" width="30px"/></th>
+                    </tr>
+                {% for line in survey.surveyquestion_set.all %}
+                    {% if not line.score %}
+                    <tr height="30px">
+                        <td>{% if line.record %}<b>{% endif %} {{ line.question_text }} {% if line.record %}</b>{% endif %}</td>
+                        <td align="center"><input type="radio" name="{{ line.id }}" value=0 /></td>
+                        <td align="center"><input type="radio" name="{{ line.id }}" value=1 /></td>
+                        <td align="center"><input type="radio" name="{{ line.id }}" value=2 /></td>
+                        <td align="center"><input type="radio" name="{{ line.id }}" value=3 /></td>
+                        <td align="center"><input type="radio" name="{{ line.id }}" value=4 /></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+
+            <h4>Remarques <em>(facultatif) :</em><br/>
+                <textarea id="remark" name="remarks" rows="10" cols="50">{{ survey.remarks }}</textarea>
+            </h4>
+            
+            <h4>Suggestions <em>(facultatif) :</em><br/>
+                <textarea name="suggestions" rows="10" cols="50">{{ survey.suggestions }}</textarea>
+            </h4>
+            
+            <input type="submit" value="Valider" />
+        </form>
+     </body>
+</html> 
