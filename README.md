@@ -18,18 +18,18 @@ add django_survey app, adjust localization
     vim MySite/urls.py
 
 ## on test server
-from django.conf.urls import url, include
-from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    from django.conf.urls import url, include
+    from django.contrib import admin
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^survey/', include('django_survey.urls')),
-]
+    urlpatterns = [
+        url(r'^admin/', admin.site.urls),
+        url(r'^survey/', include('django_survey.urls')),
+    ]
 
-urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += staticfiles_urlpatterns()
 
-
+## configure and launch app
     ./manage.py makemigrations
     ./manage.py migrate
     ./manage.py createsuperuser
