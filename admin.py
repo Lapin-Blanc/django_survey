@@ -62,8 +62,10 @@ class SurveyQuestionInline(admin.TabularInline):
 
 
 class SurveyAdmin(admin.ModelAdmin):
-    list_display = ['email', 'subject', 'sent', 'completed']
-    readonly_fields = ['token']
+    list_display = [
+        'email', 'subject', 'date_sent', 'date_received', 'sent', 'completed'
+        ]
+    readonly_fields = ['token', 'current_questionnaire']
     inlines = [SurveyQuestionInline]
 
 admin.site.register(Survey, SurveyAdmin)

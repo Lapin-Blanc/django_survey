@@ -19,7 +19,11 @@ class MailConfig(models.Model):
     message = models.TextField(
         "Message",
         blank=True,
-        default="Corps du message")
+        default="Corps du message",
+        help_text="Message à envoyer pour l'invitation à participer "
+        "à l'enquête. Les tags disponibles sont : "
+        "#SUBJECT#, #DATE#, #TITLE#, #FIRSTNAME#, #LASTNAME#, "
+        "#LINK#")
 
     class Meta:
         verbose_name = "Configuration de messagerie"
@@ -61,8 +65,18 @@ class Question(models.Model):
 
 class Survey(models.Model):
 
+    TITLE_CHOICES = (
+            ("Monsieur", "Monsieur"),
+            ("Madame", "Madame"),
+            ("Mademoiselle", "Mademoiselle")
+        )
     token = models.SlugField(max_length=50, blank=True)
     subject = models.CharField("Objet de l'enquête", max_length=100)
+    title = models.CharField(
+        max_length=12,
+        choices=TITLE_CHOICES,
+        default="Monsieur",
+        blank=True)
     firstname = models.CharField(
         "Prénom", max_length=50, blank=True)
     lastname = models.CharField("nom", max_length=50, blank=True)
@@ -134,8 +148,11 @@ class Survey(models.Model):
             "#SUBJECT#",
             self.subject)
         html_message = html_message.replace(
-            "#EVENT_DATE#",
+            "#DATE#",
             _date(self.event_date, "d F Y"))
+        html_message = html_message.replace(
+            "#TITLE#",
+            self.title)
         html_message = html_message.replace(
             "#FIRSTNAME#",
             self.firstname)
