@@ -126,6 +126,17 @@ class Survey(models.Model):
     completed.boolean = True
     completed.short_description = 'Complétée'
 
+    def score_max(self):
+        return len(self.surveyquestion_set.all()) * 5
+    score_max.short_description = "Score maximum"
+
+    def score(self):
+        if self.completed():
+            return self.surveyquestion_set.all().aggregate(
+                models.Sum("score"))["score__sum"]
+        else:
+            return None
+
     class Meta:
         verbose_name = "Enquête"
         verbose_name_plural = "Enquêtes"
