@@ -155,7 +155,7 @@ class Survey(models.Model):
             )
         html_message = html_message.replace(
             "#LINK#",
-            '<a href="%s">lien vers l\'enquete</a>' % survey_link)
+            '<a href="%s">lien vers l\'enquête</a>' % survey_link)
         html_message = html_message.replace(
             "#SUBJECT#",
             self.subject)
