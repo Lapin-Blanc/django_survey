@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import io
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Font, colors
