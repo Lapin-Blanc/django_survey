@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 
 from .google_mail import send_email
 
+SCORE_MAX = 4
 
 class MailConfig(models.Model):
 
@@ -128,7 +129,7 @@ class Survey(models.Model):
     completed.short_description = 'Complétée'
 
     def score_max(self):
-        return len(self.surveyquestion_set.all()) * 5
+        return len(self.surveyquestion_set.all()) * SCORE_MAX
     score_max.short_description = "Score maximum"
 
     def score(self):
