@@ -17,11 +17,15 @@ class MailConfig(models.Model):
     domain = models.CharField("Domaine", max_length=50)
     sender = models.EmailField("Expéditeur")
     password = models.CharField("Mot de passe", max_length=20)
-    subject = models.CharField("Objet", max_length=100)
+    subject = models.CharField("Objet", max_length=100, default="#SUBJECT#")
     message = models.TextField(
         "Message",
         blank=True,
-        default="Corps du message",
+        default="Bonjour #TITLE# #FIRSTNAME# #LASTNAME#\r\n"
+        "Concernant l'évènement du #DATE#,\r\n"
+        "Pourriez-vous répondre à l'enquête accessible "
+        "via le lien ci-dessous ?\r\n\r\n"
+        "#LINK#"
         help_text="Message à envoyer pour l'invitation à participer "
         "à l'enquête. Les tags disponibles sont : "
         "#SUBJECT#, #DATE#, #TITLE#, #FIRSTNAME#, #LASTNAME#, "
