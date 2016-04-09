@@ -6,7 +6,7 @@ Django app for surveys
     cd SurveySite/
     virtualenv -p /usr/bin/python3 .
     . bin/activate
-    pip install django pytz
+    pip install django pytz openpyxl
     django-admin startproject MySite
     mv MySite/ srcmv MySite/ src
     cd src
@@ -17,7 +17,7 @@ add django_survey app, adjust localization
 
     vim MySite/urls.py
 
-## on test server
+## adjust main project urls.py
     from django.conf.urls import url, include
     from django.contrib import admin
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -27,6 +27,7 @@ add django_survey app, adjust localization
         url(r'^survey/', include('django_survey.urls')),
     ]
 
+### For serving statig files in test server mode
     urlpatterns += staticfiles_urlpatterns()
 
 ## configure and launch app
@@ -34,5 +35,5 @@ add django_survey app, adjust localization
     ./manage.py migrate
     ./manage.py createsuperuser
     ./manage.py runserver 0.0.0.0:8000
-## For selinux -> sending mail
+## For selinux -> sending mail in production
     setsebool -P httpd_can_network_connect on
