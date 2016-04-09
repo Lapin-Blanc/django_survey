@@ -8,7 +8,7 @@ Django app for surveys
     . bin/activate
     pip install django pytz openpyxl
     django-admin startproject MySite
-    mv MySite/ srcmv MySite/ src
+    mv MySite/ src
     cd src
     git clone https://github.com/Lapin-Blanc/django_survey.git
     vim MySite/settings.py
