@@ -25,7 +25,7 @@ class MailConfig(models.Model):
         "Concernant l'évènement du #DATE#,\r\n"
         "Pourriez-vous répondre à l'enquête accessible "
         "via le lien ci-dessous ?\r\n\r\n"
-        "#LINK#"
+        "#LINK#",
         help_text="Message à envoyer pour l'invitation à participer "
         "à l'enquête. Les tags disponibles sont : "
         "#SUBJECT#, #DATE#, #TITLE#, #FIRSTNAME#, #LASTNAME#, "
