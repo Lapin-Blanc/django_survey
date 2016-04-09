@@ -34,4 +34,5 @@ add django_survey app, adjust localization
     ./manage.py migrate
     ./manage.py createsuperuser
     ./manage.py runserver 0.0.0.0:8000
-    
+## For selinux -> sending mail
+    setsebool -P httpd_can_network_connect on
