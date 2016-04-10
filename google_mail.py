@@ -21,6 +21,6 @@ def send_email(fromaddr, password, toaddr, subject, message):
         server.sendmail("fromaddr", toaddr, text)
         server.quit()
     threading.Thread(
-        target=send_email,
+        target=_send_email,
         args=(fromaddr, password, toaddr, subject, message)
             ).start()
