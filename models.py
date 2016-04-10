@@ -22,10 +22,10 @@ class MailConfig(models.Model):
         "Message",
         blank=True,
         default="Bonjour #TITLE# #FIRSTNAME# #LASTNAME#\r\n"
-        "Concernant l'évènement du #DATE#,\r\n"
-        "Pourriez-vous répondre à l'enquête accessible "
-        "via le lien ci-dessous ?\r\n\r\n"
-        "#LINK#"
+        	"Concernant l'évènement du #DATE#,\r\n"
+        	"Pourriez-vous répondre à l'enquête accessible "
+        	"via le lien ci-dessous ?\r\n\r\n"
+        	"#LINK#",
         help_text="Message à envoyer pour l'invitation à participer "
         "à l'enquête. Les tags disponibles sont : "
         "#SUBJECT#, #DATE#, #TITLE#, #FIRSTNAME#, #LASTNAME#, "
