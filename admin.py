@@ -47,7 +47,10 @@ def export_survey_report(modeladmin, request, queryset):
     for col, value in dims.items():
         ws.column_dimensions[col].width = value + 2
     wb.save(f)
-    response = HttpResponse(content_type='application/vnd.ms-excel')
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-'
+                     'officedocument.spreadsheetml.sheet'
+    )
     response['Content-Disposition'] = 'attachment; filename=Report.xlsx'
     response.write(f.getvalue())
     f.close()
